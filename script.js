@@ -1,3 +1,5 @@
+$(
+
 function()
   {
     var searchTerm = "Star Wars";
@@ -7,9 +9,19 @@ function()
       url: "https://www.omdbapi.com/?apikey=8730a432&s="+searchTerm,
       success: function(data,textStatus,jqXHR)
         {
-          console.log("hello");
-          console.log(data);
-        },
+          var movieData = data["Search"];
+         // console.log(data["Search"]);
+          
+          //$("#list-view > h1").append("Title");
+          //$("#movie-details > h1").append("Hello")
+          for(var x = 0;x < movieData.length; x++)
+            {
+              $("#list-view > table > tbody").append("<tr><td>"+movieData[x]["Title"]+"</td><td>"+movieData[x]["Year"]+"</td><td>"+movieData[x]["Poster"]+"</td></tr>");
+            }
+
+      
+
+    },
       error: function()
         {
           alert("There was an error");
